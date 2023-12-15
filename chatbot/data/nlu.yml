@@ -1,0 +1,471 @@
+version: "3.1"
+nlu:
+- intent: show_opening_hours
+  examples: |
+    - Pokaż godziny otwarcia
+    - Godziny otwarcia
+    - Kiedy restauracja jest dostęna?
+- intent: show_menu
+  examples: |
+    - Menu
+    - Pokaż menu.
+    - Chcę zobaczyć, co jest dostępne w menu.
+    - Czy możesz mi przedstawić menu?
+    - Chciałbym zapoznać się z dostępnymi daniami w menu.
+    - Czy mogę zobaczyć, co oferujecie w menu?
+    - Jaka jest oferta w waszym menu?
+    - Chcę dowiedzieć się, co jest w menu.
+    - Możesz mi pokazać, co macie na swoim menu?
+    - Jaka jest lista dań dostępnych w menu?
+    - Czy możesz udostępnić mi informacje na temat menu?
+    - Pokaż menu
+- intent: order_pizza
+  examples: |
+    - Zamów pizzę
+    - Chcę pizze
+    - Poproszę pizzę
+    - Chciałbym zamówić pizzę
+    - Pizza, proszę
+    - Zamówienie pizzy
+    - Poproszę o pizzę
+    - Chcę zamówić pizze
+    - zamawiam pizze
+    - chcę zamówić pizze
+    - zamów pizze
+    - pomóż zamówić pizze
+    - chcę złożyć zamówienie
+    - Chcę złożyć zamówienie
+    - składam zamówienie
+    - chce zlozyc zamówienie
+    - skłądam zamówienie
+- intent: choose_toppings
+  examples: |
+    - Poproszę [ser]{"entity": "toppings", "group": "1"}, [pieczarki]{"entity": "toppings", "group": "1"} i [bekon]{"entity": "toppings", "group": "1"}.
+    - Bedzie [ser]{"entity": "toppings", "group": "1"}, [pieczarki]{"entity": "toppings", "group": "1"} i [bekon]{"entity": "toppings", "group": "1"}.
+    - [Ogórek]{"entity": "toppings", "group": "1", "value": "ogorek"} i [ser]{"entity": "toppings", "group": "1"}
+    - [Papryka]{"entity": "toppings", "group": "1", "value": "papryka"}, [salami]{"entity": "toppings", "group": "1"} i [oliwki]{"entity": "toppings", "group": "1"}
+    - [ser]{"entity": "toppings", "group": "1"} i [bekon]{"entity": "toppings", "group": "1"}
+    - [bekon]{"entity": "toppings", "group": "1"} i [pieczarki]{"entity": "toppings", "group": "1"}
+    - Poproszę [oliwki]{"entity": "toppings", "group": "1"}
+    - Ok to niech będzie [ser]{"entity": "toppings", "group": "1", "value": "Ser"} i [bekon]{"entity": "toppings", "group": "1", "value": "Bekon"}
+    - [ser]{"entity": "toppings", "group": "1", "value": "Ser"}
+- intent: choose_drink
+  examples: |
+    - [Fante]{"entity": "drink", "value": "Fanta"}
+    - Zamawiam [Fante]{"entity": "drink", "value": "Fanta"}
+    - Poproszę [Fante]{"entity": "drink", "value": "Fanta"}
+    - [fanta]{"entity": "drink", "value": "Fanta"}
+    - [Coca cola]{"entity": "drink", "value": "Coca-Cola"}
+    - Zamawiam [Coca cole]{"entity": "drink", "value": "Coca-Cola"}
+    - Poproszę [Coca cole]{"entity": "drink", "value": "Coca-Cola"}
+    - [cola]{"entity": "drink", "value": "Coca-Cola"}
+    - [Woda](drink)
+    - Zamawiam [wode]{"entity": "drink", "value": "Woda"}
+    - Poproszę [wode]{"entity": "drink", "value": "Woda"}
+    - [woda]{"entity": "drink", "value": "Woda"}
+    - [Fanta](drink)
+    - [Coca-cola]{"entity": "drink", "value": "Coca-Cola"}
+    - poproszę [fante]{"entity": "drink", "value": "Fanta"}
+    - Ok, bocie, to poproszę [fante]{"entity": "drink", "value": "Fanta"}
+    - Zamawiam [wodę]{"entity": "drink", "value": "Woda"}
+    - zamawiam [wodę]{"entity": "drink", "value": "Woda"}
+    - [Pepsi](drink)
+    - [herbata](drink)
+    - [woda]{"entity": "drink", "value": "Woda"}
+- intent: choose_pizza_type
+  examples: |
+    - [Margherita](pizza_type)
+    - Poproszę [Margherite]{"entity": "pizza_type", "value": "Margherita"}
+    - Poprosze [Margherite]{"entity": "pizza_type", "value": "Margherita"}
+    - Duża [Margherita](pizza_type)
+    - Mała [Margherita](pizza_type)
+    - Średnia [Margherita](pizza_type)
+    - Pizza [Margherita]({"entity": "pizza_type", "value": "Margherita"}
+    - [Pepperoni](pizza_type)
+    - Poproszę [Pepperoni](pizza_type)
+    - Poprosze [Pepperoni](pizza_type)
+    - Duża [Pepperoni](pizza_type)
+    - Mała [Pepperoni](pizza_type)
+    - Średnia [Pepperoni](pizza_type)
+    - Pizza [Pepperoni](pizza_type)
+    - [Hawajska](pizza_type)
+    - Poproszę [Hawajską]{"entity": "pizza_type", "value": "Hawajska"}
+    - Poprosze [Hawajską]{"entity": "pizza_type", "value": "Hawajska"}
+    - Duża [Hawajska](pizza_type)
+    - Mała [Hawajska](pizza_type)
+    - Średnia [Hawajska](pizza_type)
+    - Pizza [Hawajska](pizza_type)
+    - [Capricciosa](pizza_type)
+    - [Wegetariańska](pizza_type)
+    - [Prosciutto](pizza_type)
+    - [Capricciosa](pizza_type) na wynos
+    - [Wegetariańska](pizza_type) z dostawą
+    - [Prosciutto](pizza_type) na kolację
+    - Duża pizza [Hawajska](pizza_type)
+    - Mała [Capricciosa](pizza_type)
+    - Średnia [Wegetariańska](pizza_type)
+    - [Prosciutto](pizza_type) z dostawą
+    - Z dodatkiem pieczarek i boczkiem
+    - Z kiełbasą i cebulą
+    - [Hawajska](pizza_type) z dodatkiem pieczarek
+    - [Capricciosa](pizza_type) z kiełbasą
+    - [Wegetariańska](pizza_type) z serem
+    - [hawajska]{"entity": "pizza_type", "value": "Hawajska"}
+    - Poproszę [margherite]{"entity": "pizza_type", "value": "Margherita"}
+    - Poproszę [pepperoni]{"entity": "pizza_type", "value": "Pepperoni"}
+    - [margarita](pizza_type)
+    - [Margherite]{"entity": "pizza_type", "value": "Margherita"}
+    - Poproszę [Wegetariańską](pizza_type)
+    - To poproszę [Margherite]{"entity": "pizza_type", "value": "Margherita"}
+    - poproszę [hawajską]{"entity": "pizza_type", "value": "Hawajska"}
+    - Poprosze [promperoni](pizza_type)
+    - Chodziło mi o [pepperoni]{"entity": "pizza_type", "value": "Pepperoni"}
+    - poprosze [hawajską]{"entity": "pizza_type", "value": "Hawajska"}
+    - [margherita]{"entity": "pizza_type", "value": "Margherita"}
+    - [hawajska]{"entity": "pizza_type", "value": "Hawajska"}
+- intent: lack_data
+  examples: |
+    - [Pomiń]{"entity": "lack", "value": "brak"}
+    - [pomiń]{"entity": "lack", "value": "brak"}
+- intent: recap_order
+  examples: |
+    - [to wszystko]{"entity": "recap", "value": "brak"}
+    - [chce tylko to]{"entity": "recap", "value": "brak"}
+    - [Chcę tylko to]{"entity": "recap", "value": "brak"}
+    - [Dziękuje to wszystko]{"entity": "recap", "value": "brak"}
+    - [podsumuj zamówienie]{"entity": "recap", "value": "brak"}
+    - [Podsumuj zamówienie]{"entity": "recap", "value": "brak"}
+- intent: stop_order
+  examples: |
+    - [stop](stop)
+    - [przerwij](stop)
+    - [anuluj](stop)
+    - [anuluj zamówienie](stop)
+- intent: provide_phone_number
+  examples: |
+    - [123-456-789](phone_number)
+    - To mój numer [123-456-789](phone_number)
+    - To mój numer tel [123-456-789](phone_number)
+    - To mój numer komórkowy [123-456-789](phone_number)
+    - Numer [123-456-789](phone_number)
+    - [345-432-222](phone_number)
+    - [838-040-222](phone_number)
+    - [738-222-333](phone_number)
+    - [999-999-999](phone_number)
+    - [777-333-444](phone_number)
+    - [888-333-222](phone_number)
+    - [839-222-111](phone_number)
+    - [848-444-222](phone_number)
+    - [456-666-444](phone_number)
+    - [444-333-222](phone_number)
+    - [999-333-222](phone_number)
+    - [999-444-333](phone_number)
+    - [333-333-333](phone_number)
+    - [888-999-222](phone_number)
+    - [444-333-999](phone_number)
+    - ok już dobrze już dobrze nie unoś sie mordzia, tylko cie sprawdzam. Oto numre [555-444-333](phone_number)
+    - [777-999-000](phone_number)
+    - [555-000-888](phone_number)
+    - ok, [888-999-333](phone_number)
+    - [555-000-999](phone_number)
+    - ok, [444-000-222](phone_number)
+    - [777-000-222](phone_number)
+    - [555-000-333](phone_number)
+- intent: inform_delivery_address
+  examples: |
+    - Dostarcz na [ul. Testowa 123](delivery_address)
+    - Adres dostawy to [ul. Przykładowa 456](delivery_address)
+    - Proszę dostarczyć na [ul. Inna 789](delivery_address)
+    - [Odbiór osobisty]{"entity": "delivery_address", "value": "Odbior osobisty"}
+    - [odbiorę osobiście]{"entity": "delivery_address", "value": "Odbior osobisty"}
+    - [Sam odbiore]{"entity": "delivery_address", "value": "Odbior osobisty"}
+    - [Przyjde odebrać]{"entity": "delivery_address", "value": "Odbior osobisty"}
+    - [ul. Nieznalezion 404A/21](delivery_address)
+    - [ul Testowa 123](delivery_address)
+    - [ul. Przeznaczenie 44](delivery_address)
+    - [ul Testowa 122](delivery_address)
+    - [ul](delivery_address). [Testowa 888](delivery_address)
+    - [Testowa 899](delivery_address)
+    - [Towarowa 99](delivery_address)
+    - [Testowa 44](delivery_address)
+    - [Odbór osobisty](delivery_address)
+    - [sam odbiore]{"entity": "delivery_address", "value": "Odbior osobisty"}
+- intent: greet
+  examples: |
+    - Cześć
+    - Dzień dobry
+    - Witaj
+    - Hej
+    - Siema
+    - Czołem
+    - Dobry wieczór
+    - Dzień dobry, jak się masz?
+    - Witajcie
+    - siema
+    - hej
+    - cześć
+    - ehj
+    - hej'
+- intent: goodbye
+  examples: |
+    - Do widzenia
+    - Żegnaj
+    - Do zobaczenia
+    - Do następnego razu
+    - Pa
+    - Na razie
+    - Dzięki za rozmowę
+    - Dziękuję i do zobaczenia
+    - Wracam do roboty, pa
+    - Trzymaj się
+    - Miłego dnia
+    - Miłego wieczoru
+    - Dobranoc
+    - Życzę udanego dnia
+    - dziękuję do widzenia
+    - Dzikuję
+    - Dziękuję do widzenia
+    - dzikuje do widzenia
+    - dziękuję narazie
+    - dzięki nara
+    - dziękuję pa
+    - dzięki do widzenia
+    - Dzięki narka
+    - dzięki narka
+    - dzięki do wiedzenia
+    - dzięki cześć
+    - Ok, dzięki do widzenia
+    - super, czekam na żarcie nara
+    - Dzęki nara
+    - Dzięki nara
+- intent: affirm
+  examples: |
+    - Tak
+    - Oczywiście
+    - Pewnie
+    - Zdecydowanie
+    - Jasne
+    - Bez wątpienia
+    - Tak, to prawda
+    - Dobrze
+    - Zgoda
+    - Tak, chętnie
+    - Dokładnie
+    - Okej
+    - Jasne, że tak
+    - Właśnie tak
+    - Tak, to jest poprawne
+    - Bez problemu
+    - Potwierdzam
+    - Tak, masz rację
+    - Tak, rozumiem
+    - Z pewnością
+    - ok
+- intent: deny
+  examples: |
+    - Nie
+    - Nigdy
+    - Absolutnie nie
+    - Ani trochę
+    - O nie
+    - Nie, dziękuję
+    - Nie, to błąd
+    - Nie, to nieprawda
+    - Raczej nie
+    - Przykro mi, ale nie
+    - Nie sądzę
+    - Zapomnij o tym
+    - Nie teraz
+    - Bez szans
+    - Nie, to nie jest prawda
+    - Nie, nie zgodzę się
+    - Nie mam ochoty
+    - Bez sensu
+    - Chyba żartujesz
+    - Nie widzę powodu
+    - nic, dziękuje
+- intent: mood_great
+  examples: |
+    - Jestem szczęśliwy
+    - Cieszę się
+    - Dzisiaj jest wspaniale
+    - Jaki piękny dzień
+    - Uśmiecham się
+    - Bardzo się cieszę
+    - Jest super
+    - Radość
+    - Jestem zadowolony
+    - To świetnie
+    - Mam pozytywne podejście
+    - Radosny jestem
+    - Uwielbiam to
+    - To sprawia mi przyjemność
+    - Dziękuję, jestem w dobrym nastroju
+    - Życie jest piękne
+    - Optymizm
+    - Pełen energii
+    - To świetny dzień
+    - Optymistycznie patrzę na świat
+- intent: mood_unhappy
+  examples: |
+    - Jestem przygnębiony
+    - Czuję się smutny
+    - To straszne
+    - Dzisiaj jest okropnie
+    - Mam zły dzień
+    - Jest mi smutno
+    - To jest frustrujące
+    - Nie jestem w dobrym nastroju
+    - Mam dość
+    - Nic mi nie idzie
+    - Wszystko jest trudne
+    - Nie jestem zadowolony
+    - Czuję się przytłoczony
+    - Nic mnie nie cieszy
+    - Chciałbym, żeby było lepiej
+    - To jest beznadziejne
+    - Jestem zestresowany
+    - Wszystko się sypie
+    - Jutro też pewnie będzie źle
+    - Nie chce mi się
+- intent: bot_challenge
+  examples: |
+    - Jesteś botem?
+    - Czy rozmawiam z botem?
+    - Czy jesteś człowiekiem czy botem?
+    - Jesteś automatyczną odpowiedzią?
+    - Czy masz duszę?
+    - Jaki jest twój prawdziwy status?
+    - Czy jesteś sztuczną inteligencją?
+    - Czy jesteś robotem?
+    - Czy ktoś realny odpowiada?
+    - Jesteś programem czy osobą?
+    - Czy jesteś człowiekiem czy maszyną?
+    - Czy jesteś biologiczną istotą?
+    - Jesteś tylko kodem czy czymś więcej?
+    - Czy ktoś tam naprawdę rozmawia ze mną?
+    - Jaki jest twój prawdziwy pochodzenie?
+    - Czy masz świadomość?
+    - Czy jesteś prawdziwą osobą?
+    - Jesteś robotem, prawda?
+    - Czy jesteś sztuczną inteligencją czy człowiekiem?
+    - Czy jesteś programem komputerowym?
+    - Zaraz, rozmawiam z człowiekime czy botem?
+- intent: nlu_fallback
+  examples: |
+    - dark
+    - coś dziwnego
+    - ala ma kota
+- intent: out_of_scope
+  examples: |
+    - Słońce świeci na niebie.
+    - Koty uwielbiają bawić się piłką.
+    - Nigdy nie byłem w Japonii.
+    - Deszcz spada z nieba.
+    - Książki są świetnym źródłem wiedzy.
+    - Wczoraj obejrzałem ciekawy film.
+    - Programowanie to fascynujące zajęcie.
+    - Różnorodność kultur sprawia, że świat jest ciekawszy.
+    - Czekolada i truskawki to doskonałe połączenie.
+    - Sport to zdrowie.
+    - Gra na instrumentach rozwija umiejętności.
+    - Nauka nowych języków może być wyzwaniem.
+    - Motyle są pięknymi stworzeniami.
+    - Woda jest niezbędna do życia.
+    - Góry są imponujące swoją wielkością.
+    - Sztuka jest subiektywna.
+    - Wędrówki po lesie relaksują.
+    - Nowe technologie zmieniają nasze życie.
+    - Różnorodność potraw sprawia, że kuchnia jest fascynująca.
+    - Kwiaty dodają uroku każdemu ogrodowi.
+    - Samodzielne gotowanie to satysfakcjonujące doświadczenie.
+    - Astronomia jest nauką o kosmosie.
+    - Poezja może wyrazić głębokie emocje.
+    - Gry komputerowe to popularna forma rozrywki.
+    - Historia kryje wiele tajemnic.
+    - Podróże rozwijają horyzonty.
+    - Kreatywność jest ważną umiejętnością.
+    - Czerwony kolor symbolizuje miłość.
+    - Odpoczynek jest równie ważny, co praca.
+    - Wiosna to czas odrodzenia przyrody.
+    - Szczęście to klucz do zdrowego życia.
+    - Plaża jest idealnym miejscem na relaks.
+    - Muzyka ma magiczną moc.
+    - Zwierzęta są naszymi towarzyszami.
+    - Sport to świetny sposób na aktywność.
+    - Zdrowe odżywianie przynosi korzyści.
+    - Nauka języków rozwija umysł.
+    - Uśmiech potrafi zdziałać cuda.
+    - Dobry sen wpływa na samopoczucie.
+    - Sztuczna inteligencja zmienia świat.
+    - Równowaga psychiczna jest ważna.
+    - Fotografia jest sztuką zatrzymywania chwil.
+    - podaj jakie liczby zostaną wylosowane w najbliższej kumulacji lotka
+- synonym: ogorek
+  examples: |
+    - Ogórek
+- synonym: papryka
+  examples: |
+    - Papryka
+- synonym: Ser
+  examples: |
+    - ser
+- synonym: Bekon
+  examples: |
+    - bekon
+- synonym: Fanta
+  examples: |
+    - Fante
+    - fanta
+    - fante
+- synonym: Coca-Cola
+  examples: |
+    - Coca cola
+    - Coca cole
+    - cola
+    - Coca-cola
+- synonym: Woda
+  examples: |
+    - wode
+    - woda
+    - wodę
+- synonym: Margherita
+  examples: |
+    - Margherite
+    - margherite
+    - margherita
+- synonym: Hawajska
+  examples: |
+    - Hawajską
+    - hawajska
+    - hawajską
+- synonym: Pepperoni
+  examples: |
+    - pepperoni
+- synonym: brak
+  examples: |
+    - Pomiń
+    - pomiń
+    - to wszystko
+    - chce tylko to
+    - Chcę tylko to
+    - Dziękuje to wszystko
+    - podsumuj zamówienie
+    - Podsumuj zamówienie
+- synonym: Odbior osobisty
+  examples: |
+    - Odbiór osobisty
+    - Sam odbiore
+    - Przyjde odebrać
+- synonym: Odbiór osobisty
+  examples: |
+    - odbiorę osobiście
+- synonym: Pieczarki
+  examples: |
+    - pieczarki
+- regex: delivery_address
+  examples: |
+    - \bul\.\s\w+\s\d+\b
+- regex: phone_number
+  examples: |
+    - [1-9]{3}-[0-9]{3}-[0-9]{3}

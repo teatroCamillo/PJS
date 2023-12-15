@@ -1,0 +1,167 @@
+version: '3.1'
+intents:
+- affirm
+- bot_challenge
+- choose_drink
+- choose_pizza_type
+- choose_toppings
+- deny
+- goodbye
+- greet
+- greet_with_pizza_order
+- inform_delivery_address
+- lack_data
+- mood_great
+- mood_unhappy
+- nlu_fallback
+- order_pizza
+- out_of_scope
+- provide_phone_number
+- recap_order
+- show_menu
+- show_opening_hours
+- stop_order
+entities:
+- pizza_type
+- drink
+- delivery_address
+- phone_number
+- toppings
+- lack
+- stop
+- recap
+slots:
+  pizza_type:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: pizza_type
+  toppings:
+    type: list
+    influence_conversation: true
+    mappings:
+    - type: custom
+      action: action_get_toppings
+  drink:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: drink
+  phone_number:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: phone_number
+  delivery_address:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: delivery_address
+  price:
+    type: text
+    initial_value: 0
+    mappings:
+    - type: custom
+      action: action_order_simple_summary
+forms:
+  pizza_form:
+    required_slots:
+    - pizza_type
+    - toppings
+    - drink
+    - delivery_address
+    - phone_number
+responses:
+  utter_please_rephrase:
+  - text: Przepraszam nie rozumiem, czy mógłbyś przeformułować?
+  utter_out_of_scope:
+  - text: Przepraszam ale nie potrzafię obsłużyć tego żądania.
+  utter_let_s_try_again:
+  - text: Spróbujmy jeszcze raz :)
+  utter_ask_are_you_sure:
+  - text: Jesteś pewien?
+    buttons:
+    - title: Tak
+      payload: /affirm
+    - title: Nie
+      payload: /deny
+  utter_ask_confirm_order:
+  - text: Czy potwiedzasz zamówienie?
+    buttons:
+    - title: Tak
+      payload: /affirm
+    - title: Nie
+      payload: /deny
+  utter_ask_that_all:
+  - text: Czy to wszystko?
+    buttons:
+    - title: Tak
+      payload: /affirm
+    - title: Nie
+      payload: /deny
+  utter_ask_pizza_form_toppings:
+  - text: Jakieś dodatki?
+  - text: Jakich dodatków potrzebujesz?
+  utter_ask_pizza_form_drink:
+  - text: Co wybierasz do picia?
+  utter_ask_pizza_form_pizza_type:
+  - text: Jaką pizzę chciałbyś zamówić?
+  - text: Jaki rodzaj pizzy chciałbyś zamówić?
+  - text: Czy masz już w głowie konkretny rodzaj pizzy?
+  - text: Zamawiając pizzę, jaki smak preferujesz?
+  - text: Proszę podać preferowany rodzaj pizzy.
+  - text: Czy masz ochotę na jakąś konkretną pizzę?
+  - text: W jakim kierunku kierujemy się smakowo? Jaki rodzaj pizzy?
+  - text: Jesteśmy gotowi na Twoje zamówienie! Jaką pizzę wybierasz?
+  - text: Zamówienie pizzy już w drodze! Jaki smak wybierasz?
+  - text: Proszę podać nam swój ulubiony rodzaj pizzy.
+  - text: Jaką pizzę mamy przygotować dla Ciebie?
+  utter_ask_pizza_form_phone_number:
+  - text: Porszę podaj numer telefonu abyśmy mogli się z Tobą skontaktować w razie problemów.
+  utter_ask_pizza_form_delivery_address:
+  - text: Podaj adres dostawy, proszę.
+  utter_greet:
+  - text: Cześć! Jak mogę Ci dzisiaj pomóc?
+  - text: Witaj! Co mogę dla Ciebie zrobić?
+  - text: Hej! Miło Cię widzieć. Co mogę dla Ciebie zrobić?
+  - text: Siema! Mam nadzieję, że jesteś głodny. Co mogę dla Ciebie zrobić?
+  - text: Witaj w naszej pizzerii! Jak mogę obsłużyć Twoje zamówienie?
+  utter_cheer_up:
+  - text: Złość piękności szkodzi ;p
+  utter_did_that_help:
+  - text: Pomogłem?
+  utter_happy:
+  - text: Świetnie, tak trzymaj!
+  utter_goodbye:
+  - text: Na razie.
+  utter_stop_order:
+  - text: Ok, przerywamy zamówięnie. Dziękuję.
+  utter_iamabot:
+  - text: Jestem botem.
+actions:
+- action_reset_slots
+- utter_ask_confirm_order
+- action_order_simple_summary
+- action_query_db_and_show_menu
+- utter_let_s_try_again
+- action_get_toppings
+- action_confirmed_and_stored_order
+- action_set_lack_for_current_slot
+- utter_goodbye
+- utter_greet
+- utter_ask_are_you_sure
+- utter_stop_order
+- utter_out_of_scope
+- utter_iamabot
+- action_query_db_and_show_opening_hours
+- validate_pizza_form
+- utter_please_rephrase
+- utter_ask_that_all
+- utter_ask_what_more_can_I_do
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

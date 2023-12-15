@@ -1,0 +1,631 @@
+version: "3.1"
+
+stories:
+
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - slot_was_set:
+    - price: '0.00'
+  - action: utter_greet
+  - intent: order_pizza
+  - slot_was_set:
+    - price: '0.00'
+  - action: action_query_db_and_show_menu
+  - action: pizza_form
+  - active_loop: pizza_form
+  - slot_was_set:
+    - price: '0.00'
+  - slot_was_set:
+    - requested_slot: pizza_type
+  - intent: choose_pizza_type
+    entities:
+    - pizza_type: Hawajska
+  - slot_was_set:
+    - pizza_type: Hawajska
+  - slot_was_set:
+    - price: '0.00'
+  - action: pizza_form
+  - slot_was_set:
+    - pizza_type: Hawajska
+  - slot_was_set:
+    - requested_slot: drink
+  - intent: choose_drink
+    entities:
+    - drink: Fanta
+  - slot_was_set:
+    - drink: Fanta
+  - slot_was_set:
+    - price: '28.00'
+  - action: pizza_form
+  - slot_was_set:
+    - drink: Fanta
+  - slot_was_set:
+    - requested_slot: delivery_address
+  - intent: inform_delivery_address
+    entities:
+    - delivery_address: ul
+    - delivery_address: Testowa 888
+  - slot_was_set:
+    - delivery_address: Testowa 888
+  - slot_was_set:
+    - price: '33.90'
+  - action: pizza_form
+  - slot_was_set:
+    - delivery_address: Testowa 888
+  - slot_was_set:
+    - requested_slot: phone_number
+  - intent: provide_phone_number
+    entities:
+    - phone_number: 888-999-333
+  - slot_was_set:
+    - phone_number: 888-999-333
+  - slot_was_set:
+    - price: '33.90'
+  - action: pizza_form
+  - slot_was_set:
+    - phone_number: 888-999-333
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_order_simple_summary
+  - slot_was_set:
+    - price: '33.90'
+  - action: utter_ask_confirm_order
+  - intent: affirm
+  - slot_was_set:
+    - price: '33.90'
+  - action: action_confirmed_and_stored_order
+  - intent: goodbye
+  - slot_was_set:
+    - price: '33.90'
+  - action: utter_goodbye
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - slot_was_set:
+    - price: '0.00'
+  - action: utter_greet
+  - intent: order_pizza
+  - slot_was_set:
+    - price: '0.00'
+  - action: action_query_db_and_show_menu
+  - action: pizza_form
+  - active_loop: pizza_form
+  - slot_was_set:
+    - price: '0.00'
+  - slot_was_set:
+    - requested_slot: pizza_type
+  - intent: choose_pizza_type
+    entities:
+    - pizza_type: Hawajska
+  - slot_was_set:
+    - pizza_type: Hawajska
+  - slot_was_set:
+    - price: '0.00'
+  - action: pizza_form
+  - slot_was_set:
+    - pizza_type: Hawajska
+  - slot_was_set:
+    - requested_slot: drink
+  - intent: choose_drink
+    entities:
+    - drink: Woda
+  - slot_was_set:
+    - drink: Woda
+  - slot_was_set:
+    - price: '28.00'
+  - action: pizza_form
+  - slot_was_set:
+    - drink: Woda
+  - slot_was_set:
+    - requested_slot: delivery_address
+  - intent: inform_delivery_address
+    entities:
+    - delivery_address: Testowa 899
+  - slot_was_set:
+    - delivery_address: Testowa 899
+  - slot_was_set:
+    - price: '33.00'
+  - action: pizza_form
+  - slot_was_set:
+    - delivery_address: Testowa 899
+  - slot_was_set:
+    - requested_slot: phone_number
+  - intent: provide_phone_number
+    entities:
+    - phone_number: 555-000-999
+  - slot_was_set:
+    - phone_number: 555-000-999
+  - slot_was_set:
+    - price: '33.00'
+  - action: pizza_form
+  - slot_was_set:
+    - phone_number: 555-000-999
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_order_simple_summary
+  - slot_was_set:
+    - price: '33.00'
+  - action: utter_ask_confirm_order
+  - intent: affirm
+  - slot_was_set:
+    - price: '33.00'
+  - action: action_confirmed_and_stored_order
+  - intent: goodbye
+  - slot_was_set:
+    - price: '33.00'
+  - action: utter_goodbye
+
+- story: goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+
+
+
+#- story: cos do picia
+
+#- story: Delivery
+#  steps:
+#    - intent: greet
+#    - action: utter_greet
+#    - intent: order_pizza
+#    - action: utter_ask_pizza_type
+#    - intent: choose_pizza_type
+#  #    entities:
+#  #    - pizza_type: "Pepperoni"
+#    - action: action_order_simple_summary
+#    - action: utter_ask_delivery_address
+#    - intent: inform_delivery_address
+#  #    entities:
+#  #    - delivery_address: "ul. Pizzy 123"
+#    - action: utter_order_summary
+#    - intent: affirm
+#    - action: utter_happy
+
+#- story: Deny Order Pizza
+#  steps:
+#    - intent: greet
+#    - action: utter_greet
+#    - intent: order_pizza
+#    - action: utter_ask_pizza_type
+#    - intent: deny
+#    - action: utter_goodbye
+
+#- story: Ask for Help after Order Pizza
+#  steps:
+#  - intent: greet
+#  - action: utter_greet
+#  - intent: order_pizza
+#  - action: utter_ask_pizza_type
+#  - intent: choose_pizza_type
+##    entities:
+##    - pizza_type: "Quattro Formaggi"
+#  - action: utter_ask_delivery_address
+#  - intent: inform_delivery_address
+##    entities:
+##    - delivery_address: "ul. Serowa 789"
+#  - action: utter_order_summary
+#  - intent: mood_unhappy
+#  - action: utter_cheer_up
+#  - intent: bot_challenge
+#  - action: utter_iamabot
+#  - intent: mood_great
+#  - action: utter_did_that_help
+
+#- story: Order Margherita Pizza
+#  steps:
+#  - intent: order_pizza
+#  - action: utter_ask_pizza_type
+#  - intent: choose_pizza_type
+##    entities:
+##    - pizza_type: "Margherita"
+#  - action: utter_ask_delivery_address
+#  - intent: inform_delivery_address
+##    entities:
+##    - delivery_address: "ul. Testowa 123"
+#  - action: utter_order_summary
+
+#- story: Order Pepperoni Pizza
+#  steps:
+#  - intent: order_pizza
+#  - action: utter_ask_pizza_type
+#  - intent: choose_pizza_type
+##    entities:
+##    - pizza_type: "Pepperoni"
+#  - action: utter_ask_delivery_address
+#  - intent: inform_delivery_address
+##    entities:
+##    - delivery_address: "ul. Przykładowa 456"
+#  - action: utter_order_summary
+
+
+
+
+
+- story: interactive_story_1
+  steps:
+  - intent: order_pizza
+  - slot_was_set:
+    - price: '0.00'
+  - action: action_query_db_and_show_menu
+  - action: pizza_form
+  - active_loop: pizza_form
+  - slot_was_set:
+    - price: '0.00'
+  - slot_was_set:
+    - requested_slot: pizza_type
+  - intent: choose_pizza_type
+    entities:
+    - pizza_type: Hawajska
+  - slot_was_set:
+    - pizza_type: Hawajska
+  - slot_was_set:
+    - price: '0.00'
+  - action: pizza_form
+  - slot_was_set:
+    - pizza_type: Hawajska
+  - slot_was_set:
+    - requested_slot: toppings
+  - intent: choose_toppings
+    entities:
+    - toppings: Ser
+    - toppings: Bekon
+  - slot_was_set:
+    - toppings:
+      - ser
+      - bekon
+  - slot_was_set:
+    - price: '28.00'
+  - action: pizza_form
+  - slot_was_set:
+    - toppings:
+      - ser
+      - bekon
+  - slot_was_set:
+    - requested_slot: drink
+  - intent: choose_drink
+    entities:
+    - drink: Woda
+  - slot_was_set:
+    - drink: Woda
+  - slot_was_set:
+    - price: '43.00'
+  - action: pizza_form
+  - slot_was_set:
+    - drink: Woda
+  - slot_was_set:
+    - requested_slot: delivery_address
+  - intent: inform_delivery_address
+    entities:
+    - delivery_address: Towarowa 99
+  - slot_was_set:
+    - delivery_address: Towarowa 99
+  - slot_was_set:
+    - price: '48.00'
+  - action: pizza_form
+  - slot_was_set:
+    - delivery_address: Towarowa 99
+  - slot_was_set:
+    - requested_slot: phone_number
+  - intent: provide_phone_number
+    entities:
+    - phone_number: 777-999-000
+  - slot_was_set:
+    - phone_number: 777-999-000
+  - slot_was_set:
+    - price: '48.00'
+  - action: pizza_form
+  - slot_was_set:
+    - phone_number: 777-999-000
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_order_simple_summary
+  - slot_was_set:
+    - price: '48.00'
+  - action: utter_ask_confirm_order
+  - intent: affirm
+  - slot_was_set:
+    - price: '48.00'
+  - action: action_confirmed_and_stored_order
+
+- story: interactive_story_1
+  steps:
+  - intent: order_pizza
+  - slot_was_set:
+    - price: '0.00'
+  - action: action_query_db_and_show_menu
+  - action: pizza_form
+  - active_loop: pizza_form
+  - slot_was_set:
+    - price: '0.00'
+  - slot_was_set:
+    - requested_slot: pizza_type
+  - intent: choose_pizza_type
+    entities:
+    - pizza_type: Hawajska
+  - slot_was_set:
+    - pizza_type: Hawajska
+  - slot_was_set:
+    - price: '0.00'
+  - action: pizza_form
+  - slot_was_set:
+    - pizza_type: Hawajska
+  - slot_was_set:
+    - requested_slot: toppings
+  - intent: choose_toppings
+    entities:
+    - toppings: Bekon
+    - toppings: Pieczarki
+  - slot_was_set:
+    - toppings:
+      - bekon
+      - pieczarki
+  - slot_was_set:
+    - price: '28.00'
+  - action: pizza_form
+  - slot_was_set:
+    - toppings:
+      - bekon
+      - pieczarki
+  - slot_was_set:
+    - requested_slot: drink
+  - intent: choose_drink
+    entities:
+    - drink: Coca-Cola
+  - slot_was_set:
+    - drink: Coca-Cola
+  - slot_was_set:
+    - price: '38.00'
+  - action: pizza_form
+  - slot_was_set:
+    - drink: Coca-Cola
+  - slot_was_set:
+    - requested_slot: delivery_address
+  - intent: inform_delivery_address
+    entities:
+    - delivery_address: Testowa 44
+  - slot_was_set:
+    - delivery_address: Testowa 44
+  - slot_was_set:
+    - price: '43.90'
+  - action: pizza_form
+  - slot_was_set:
+    - delivery_address: Testowa 44
+  - slot_was_set:
+    - requested_slot: phone_number
+  - intent: provide_phone_number
+    entities:
+    - phone_number: 444-000-222
+  - slot_was_set:
+    - phone_number: 444-000-222
+  - slot_was_set:
+    - price: '43.90'
+  - action: pizza_form
+  - slot_was_set:
+    - phone_number: 444-000-222
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_order_simple_summary
+  - slot_was_set:
+    - price: '43.90'
+  - action: utter_ask_confirm_order
+  - intent: affirm
+  - slot_was_set:
+    - price: '43.90'
+  - action: action_confirmed_and_stored_order
+  - intent: goodbye
+  - slot_was_set:
+    - price: '43.90'
+  - action: utter_goodbye
+
+- story: interactive_story_1
+  steps:
+  - intent: order_pizza
+  - slot_was_set:
+    - price: '0.00'
+  - action: action_query_db_and_show_menu
+  - action: pizza_form
+  - active_loop: pizza_form
+  - slot_was_set:
+    - price: '0.00'
+  - slot_was_set:
+    - requested_slot: pizza_type
+  - intent: choose_pizza_type
+    entities:
+    - pizza_type: Hawajska
+  - slot_was_set:
+    - pizza_type: Hawajska
+  - slot_was_set:
+    - price: '0.00'
+  - action: pizza_form
+  - slot_was_set:
+    - pizza_type: Hawajska
+  - slot_was_set:
+    - requested_slot: toppings
+  - intent: choose_toppings
+    entities:
+    - toppings: oliwki
+  - slot_was_set:
+    - price: '28.00'
+  - action: action_get_toppings
+  - action: pizza_form
+  - slot_was_set:
+    - requested_slot: toppings
+  - intent: choose_toppings
+    entities:
+    - toppings: Ser
+    - toppings: Bekon
+  - slot_was_set:
+    - toppings:
+      - ser
+      - bekon
+  - slot_was_set:
+    - price: '28.00'
+  - action: pizza_form
+  - slot_was_set:
+    - toppings:
+      - ser
+      - bekon
+  - slot_was_set:
+    - requested_slot: drink
+  - intent: lack_data
+    entities:
+    - lack: brak
+  - slot_was_set:
+    - price: '38.00'
+  - action: action_set_lack_for_current_slot
+  - slot_was_set:
+    - drink: brak
+  - action: pizza_form
+  - slot_was_set:
+    - requested_slot: delivery_address
+  - intent: inform_delivery_address
+    entities:
+    - delivery_address: Odbór osobisty
+  - slot_was_set:
+    - delivery_address: Odbór osobisty
+  - slot_was_set:
+    - price: '38.00'
+  - action: pizza_form
+  - slot_was_set:
+    - delivery_address: Odbór osobisty
+  - slot_was_set:
+    - requested_slot: phone_number
+  - intent: provide_phone_number
+    entities:
+    - phone_number: 777-000-222
+  - slot_was_set:
+    - phone_number: 777-000-222
+  - slot_was_set:
+    - price: '38.00'
+  - action: pizza_form
+  - slot_was_set:
+    - phone_number: 777-000-222
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_order_simple_summary
+  - slot_was_set:
+    - price: '38.00'
+  - action: utter_ask_confirm_order
+  - intent: affirm
+  - slot_was_set:
+    - price: '38.00'
+  - action: action_confirmed_and_stored_order
+
+- story: interactive_story_1
+  steps:
+  - intent: order_pizza
+  - slot_was_set:
+    - price: '0.00'
+  - action: action_query_db_and_show_menu
+  - action: pizza_form
+  - active_loop: pizza_form
+  - slot_was_set:
+    - price: '0.00'
+  - slot_was_set:
+    - requested_slot: pizza_type
+  - intent: choose_pizza_type
+    entities:
+    - pizza_type: Hawajska
+  - slot_was_set:
+    - pizza_type: Hawajska
+  - slot_was_set:
+    - price: '0.00'
+  - action: pizza_form
+  - slot_was_set:
+    - pizza_type: Hawajska
+  - slot_was_set:
+    - requested_slot: toppings
+  - intent: choose_toppings
+    entities:
+    - toppings: Ser
+  - slot_was_set:
+    - toppings:
+      - ser
+  - slot_was_set:
+    - price: '28.00'
+  - action: pizza_form
+  - slot_was_set:
+    - toppings:
+      - ser
+  - slot_was_set:
+    - requested_slot: drink
+  - intent: choose_drink
+    entities:
+    - drink: Woda
+  - slot_was_set:
+    - drink: Woda
+  - slot_was_set:
+    - price: '33.00'
+  - action: pizza_form
+  - slot_was_set:
+    - drink: Woda
+  - slot_was_set:
+    - requested_slot: delivery_address
+  - intent: inform_delivery_address
+    entities:
+    - delivery_address: Odbior osobisty
+  - slot_was_set:
+    - delivery_address: Odbior osobisty
+  - slot_was_set:
+    - price: '38.00'
+  - action: pizza_form
+  - slot_was_set:
+    - delivery_address: Odbior osobisty
+  - slot_was_set:
+    - requested_slot: phone_number
+  - intent: provide_phone_number
+    entities:
+    - phone_number: 555-000-333
+  - slot_was_set:
+    - phone_number: 555-000-333
+  - slot_was_set:
+    - price: '38.00'
+  - action: pizza_form
+  - slot_was_set:
+    - phone_number: 555-000-333
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_order_simple_summary
+  - slot_was_set:
+    - price: '38.00'
+  - action: utter_ask_confirm_order
+  - intent: deny
+  - slot_was_set:
+    - price: '38.00'
+  - action: utter_let_s_try_again
+  - action: action_reset_slots
+  - slot_was_set:
+    - pizza_type: null
+  - slot_was_set:
+    - toppings: null
+  - slot_was_set:
+    - drink: null
+  - slot_was_set:
+    - phone_number: null
+  - slot_was_set:
+    - delivery_address: null
+  - slot_was_set:
+    - price: null
+  - slot_was_set:
+    - requested_slot: null
+  - slot_was_set:
+    - session_started_metadata: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: pizza_form
+  - active_loop: pizza_form
+  - slot_was_set:
+    - price: '0.00'
+  - slot_was_set:
+    - requested_slot: pizza_type
